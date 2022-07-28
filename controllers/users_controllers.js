@@ -3,7 +3,9 @@
 // and then we can use this schema to create many users
 
 module.exports.profile=function(req,res){
-    return res.end('<h1>Profile</h1>');
+    return res.render('users_profile',{
+        title:'Profile'
+    })
 }
 
 module.exports.user1=function(req,res){

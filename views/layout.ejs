@@ -1,0 +1,23 @@
+<!-- Here we will put the const part excl. the variable part  -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=title%>
+    </title>
+<link rel="stylesheet" href="../assets/css/layout.css">
+</head>
+<body>
+   <%- include('_header'); %>
+   
+<!-- And I need to tell where the variable part lies -->
+   <%- body %>
+   <p>Hello</p>
+<!-- so now just remove the common part -->
+    <%- include('_footer'); %>
+</body>
+</html>
+
+<!-- So this is the wrapper to org pages -->
