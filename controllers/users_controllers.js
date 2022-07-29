@@ -11,3 +11,16 @@ module.exports.profile=function(req,res){
 module.exports.user1=function(req,res){
     return res.end('<h1>User1</h1>')
 }
+// so now we are going to add some couple of acions
+//rendering sign in actions
+module.exports.signin=function(req,res){
+    return res.render('user_sign_in',{
+        title:'Codeial|Signin'
+    })
+}
+//rendering sign up pages
+module.exports.signup=function(req,res){
+    return res.render('user_sign_up',{
+        title:'Codeial|Signup'
+    })
+}

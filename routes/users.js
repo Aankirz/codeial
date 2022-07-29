@@ -7,4 +7,9 @@ router.get('/profile',userController.profile);
 
 router.get('/user1',userController.user1);
 
+//using the kebab case (name-name)
+router.get('/sign-in',userController.signin);
+
+router.get('/sign-up',userController.signup);
+
 module.exports=router;
