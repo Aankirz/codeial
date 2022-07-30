@@ -12,4 +12,6 @@ router.get('/sign-in',userController.signin);
 
 router.get('/sign-up',userController.signup);
 
+//mistake we should use post, not get as method of form is post
+router.post('/create',userController.create);
 module.exports=router;

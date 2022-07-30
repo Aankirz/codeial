@@ -4,6 +4,8 @@ const cookieParser=require('cookie-parser');
 const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
+
+const db=require('./config/mongoose');
 // first I need to tell whcih folder I want to use for static files
 
 //before routes get rendered we need to call
