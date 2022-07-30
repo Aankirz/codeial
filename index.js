@@ -1,4 +1,5 @@
 const express=require('express');
+const cookieParser=require('cookie-parser');
 // we use const because so that no one could override.
 const app=express();
 const port=8000;
@@ -7,7 +8,8 @@ const expressLayouts=require('express-ejs-layouts');
 
 //before routes get rendered we need to call
 //ejs layouts to render the layout
-
+app.use(express.urlencoded());
+app.use(cookieParser());
 app.use(expressLayouts);
 app.use(express.static('./assets'));
 app.set('layout extractStyles',true);
