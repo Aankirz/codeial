@@ -6,6 +6,10 @@ const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 
 const db=require('./config/mongoose');
+const passport=require('passport');
+const passportLocal=require('./config/passport-local')
+const session=require('express-session');
+
 // first I need to tell whcih folder I want to use for static files
 
 //before routes get rendered we need to call
@@ -20,6 +24,18 @@ app.set('layout extractScripts',true);
 app.use('/',require('./routes'));//by default it will look for index.js 
 app.set('view engine','ejs');
 app.set('views','./views');
+
+app.use(session({
+    name:'codeial',
+    //ToDo Change the secret before deployment in production mode
+    secret:"blahSomething",
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:(1000*60*100)
+    }
+}))
+
 
 app.listen(port,function(err){
 if(err){
