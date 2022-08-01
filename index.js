@@ -6,9 +6,24 @@ const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 
 const db=require('./config/mongoose');
+const session=require('express-session');
+
 const passport=require('passport');
 const passportLocal=require('./config/passport-local')
-const session=require('express-session');
+
+//Now we need to add a middleware that takes the cookies and encrypts it.
+
+
+
+//Applying sass middleware
+const sassMiddleware=require('sass');
+app.use(sassMiddleware({
+    src:'/assets/scss',
+    dest:'/assets/css',
+    debug:true,
+    outputStlye:'extended',
+    prefix:'/css'// to indicate that after scss it goes to css.
+}))
 
 // first I need to tell whcih folder I want to use for static files
 
@@ -21,21 +36,24 @@ app.use(express.static('./assets'));
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 //use express router
-app.use('/',require('./routes'));//by default it will look for index.js 
 app.set('view engine','ejs');
 app.set('views','./views');
 
 app.use(session({
     name:'codeial',
-    //ToDo Change the secret before deployment in production mode
+    // ToDo Change the secret before deployment in production mode
     secret:"blahSomething",
-    saveUninitialized:false,
+    saveUninitialized:false, //when the user is not logged in ,so we don't want any extra data to get stored
     resave:false,
     cookie:{
-        maxAge:(1000*60*100)
+        maxAge:(1000*60*100) //(time-to-live), in milliseconds, of the session cookie.
     }
 }))
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/',require('./routes'));//by default it will look for index.js 
 
 app.listen(port,function(err){
 if(err){

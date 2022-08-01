@@ -42,6 +42,21 @@ if(err){
 return done(null,user);
     });
 })
+//check if the user is auth
+passport.checkAuthentication=function(req,res,next){
+    // if the user is signed in, then pass on the request to the next function(contd)
+    if(req.isAuthenticated()){
+// to check if the user is already signed in or not
+return next();
+    }
+    //if the user is not signed in
+    return res.redirect('/users/sign-in')
+}
 
-
+passport.setAuthenticatedUser=function(req,res,next){
+    if(req.isAuthenticated()){
+        res.locals.user=req.user;
+        
+    }
+}
 module.exports=passport;

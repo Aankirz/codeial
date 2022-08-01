@@ -54,5 +54,5 @@ module.exports.create=function(req,res){
 }
 
 module.exports.createSession=function(req,res){
-    //TODO Later
+    return res.redirect('/');
 }
