@@ -16,14 +16,14 @@ const passportLocal=require('./config/passport-local')
 
 
 //Applying sass middleware
-const sassMiddleware=require('sass');
-app.use(sassMiddleware({
-    src:'/assets/scss',
-    dest:'/assets/css',
-    debug:true,
-    outputStlye:'extended',
-    prefix:'/css'// to indicate that after scss it goes to css.
-}))
+// const sassMiddleware=require('sass');
+// app.use(sassMiddleware({
+//     src:'/assets/scss',
+//     dest:'/assets/css',
+//     debug:true,
+//     outputStlye:'extended',
+//     prefix:'/css'// to indicate that after scss it goes to css.
+// }))
 
 // first I need to tell whcih folder I want to use for static files
 

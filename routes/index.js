@@ -15,10 +15,11 @@ router.get('/',homeController.home);//so acessing the fns(home)
 
 router.get('/action',homeController.action);
 
-router.get('/posts',postController.posts);
+// router.get('/posts',postController.posts);
 
 router.use('/users',require('./users'));
-
+router.use('/posts',require('./posts'));
+// router.use('/posts',)
 
 console.log('router loaded')
 module.exports=router;
