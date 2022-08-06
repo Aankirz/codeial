@@ -54,5 +54,6 @@ module.exports.create=function(req,res){
 }
 
 module.exports.createSession=function(req,res){
+    req.flash('success','Logged in successfully');
     return res.redirect('/');
 }

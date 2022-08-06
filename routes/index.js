@@ -19,6 +19,7 @@ router.get('/action',homeController.action);
 
 router.use('/users',require('./users'));
 router.use('/posts',require('./posts'));
+router.use('/comments',require('./comments'));
 // router.use('/posts',)
 
 console.log('router loaded')

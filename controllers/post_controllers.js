@@ -3,7 +3,7 @@ module.exports.posts=function(req,res){
 }
 
 const Post=require('../models/post')
-
+const User=require('../models/user')
 
 
 module.exports.create=function(req,res){
@@ -19,4 +19,16 @@ module.exports.create=function(req,res){
       //ToDo check of user signed in or not
  //Now creating routes for it.
    })
+}
+module.exports.create1=async function(req,res){
+  try{
+    let posts=await Post.create({
+      content:req.body.content,
+    })
+    return res.redirect('back');
+  }catch(err){
+   console.log('error in creating post');
+  }
+  
+  
 }
