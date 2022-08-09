@@ -5,9 +5,27 @@
 const User=require('../models/user');
 
 module.exports.profile=function(req,res){
-    return res.render('users_profile',{
-        title:'Profile'
-    })
+    
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id,function(err,user){
+            if(err){
+                console.log('error in finding the user while profile');
+                return;
+            }
+            if(user){
+                return res.render('users_profile',{
+                    title:'Codeial|Profile',
+                    user:user
+                })
+            }else{
+                return res.redirect('/users/sign-in');
+            }
+        })
+    }else{
+        return res.redirect('/users/sign-in');
+    }
+    
+    
 }
 
 module.exports.user1=function(req,res){
@@ -31,6 +49,9 @@ module.exports.signup=function(req,res){
 module.exports.create=function(req,res){
     //First step: check if the password and the confirm password are same
     if(req.body.password!=req.body.confirm_password){
+        console.log(req.body.password);
+        // console.log(req.body.confirm_password);
+        console.log('password doesnt match');
         return res.redirect('back');//to send the user back to the previous page
     }
     User.findOne({email:req.body.email},function(err,user){
@@ -48,30 +69,39 @@ module.exports.create=function(req,res){
       }
             )
     } else{
+        console.log('user already exists');
         return res.redirect('back');
     }
-})
+});
 }
 
 module.exports.createSession=function(req,res){
+    //Steps to authenticate find the user
    //Find the user based on the email
-   User.findOne({email:req.body.email},function(err,user){
+   User.findOne({email: req.body.email},function(err,user){
     if(err){
 //handle user found
 
         console.log('Error in finding the user in signing in');
         return;
     }
+    console.log(user);
     if(user){
 //handle password which doesn't match
 if(user.password!=req.body.password){
+    console.log(user.password);
+    console.log(req.body.password);
+    console.log('password doesnt match');
     return res.redirect('back');
 }
    //handle session creation
     res.cookie('user_id',user.id) ;
+  console.log('Hello');
     return res.redirect('/users/profile'); 
     }else{
  //handle user not found
+ console.log('User doesnt exists');
+ return res.redirect('back');
     }
    })
    
