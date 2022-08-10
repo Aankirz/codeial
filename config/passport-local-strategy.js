@@ -6,11 +6,11 @@ const User=require('../models/user');
 
 //authentication using passport: so first finding a user with email id (findOne)
 passport.use(new LocalStrategy({ //accessing through schema
-    usernameField:'email'
+    usernameField:'email' // to detect a user(because email is the only thing that's unique)
 },
-function(email,password,done){
+  function(email,password,done){
   //so email and pswd will be passed on
-User.findOne({email:email},function(err,user){
+  User.findOne({email:email},function(err,user){
     if(err){
         console.log('error in finding the user in local strategy');
         return done(err);
@@ -32,7 +32,7 @@ passport.serializeUser(function(user,done){
 
 })
 
-//deserialising the user meaning hich user is accessing
+//deserialising the user meaning which user is accessing to verify in the db
 passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
 if(err){
