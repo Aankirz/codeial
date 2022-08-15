@@ -44,6 +44,7 @@ module.exports.create=function(req,res){
         console.log('error in creating the user while signing up');
         return;
       }
+      console.log('user created',user);
       return res.redirect('/users/sign-in');
       }
             )
@@ -53,7 +54,11 @@ module.exports.create=function(req,res){
 })
 }
 
+//session is created in passport.js itself
 module.exports.createSession=function(req,res){
-    req.flash('success','Logged in successfully');
+    // req.flash('success','Logged in successfully');
+//    console.log(req.session);
+   console.log('Hello here is the error');
+  
     return res.redirect('/');
 }

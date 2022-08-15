@@ -6,10 +6,11 @@ const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 
 const db=require('./config/mongoose');
-const session=require('express-session');
 
+//Used for session cookie
+const session=require('express-session');
 const passport=require('passport');
-const passportLocal=require('./config/passport-local')
+const passportLocal=require('./config/passport-local-strategy')
 
 //Now we need to add a middleware that takes the cookies and encrypts it.
 
